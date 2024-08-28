@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #6ea0fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .navbar {
+    background-color: #333;
+    overflow: hidden;
+    position: fixed; /* Fixa a navbar no topo */
+    top: 0; /* Posiciona no topo da página */
+    width: 100%; /* Largura total */
+    z-index: 1000; /* Garante que a navbar fique acima dos outros elementos */
+  }
+
+  /* Links da Navbar */
+  .navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  /* Links - muda a cor ao passar o mouse */
+  .navbar a:hover {
+    background-color: #ff1515;
+    color: black;
+  }
+        .container {
+            text-align: center;
+            background: #76a6ff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 500px;
+            height: 350px;
+        }
+        .logo {
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 25px;
+            margin: 5px;
+            font-size: 16px;
+            width: 100px;
+            border: none;
+            border-radius: 15px;
+            background: #ff0000;
+            color: white;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            background-color: rgb(207, 207, 207);
+        }
+    </style>
+    {% load static %}
+</head>
+<div class="navbar">
+    <a href="{% url 'home' %}">Voltar</a>
+ 
+ </div>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="{% static 'imagens/Bemol.logo.png' %}" width="250px" alt="Logo da Empresa">
+        </div>
+        <form method="Post"> 
+            {% csrf_token %}
+            
+            <!--<input type="text" placeholder="nome ..." required>
+            #<input type="password" placeholder="senha..." required> -->
+            <label for="nome">nome:</label>
+            <input type="text" id="nome" name="nome">
+            <label for="senha">senha:</label>
+            <input type="senha" id="senha" name="senha">
+            <button type="submit" class="button">Login</button>
+            <!--<button type="submit" class="button">Entrar</button> -->
+        </form>
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+</body>
+</html>
